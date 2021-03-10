@@ -89,7 +89,7 @@ func (c *Command) RunCommand(cmd *exec.Cmd) error {
 	bytes, err := cmd.Output()
 
 	if err != nil {
-		fmt.Sprintf("Err: %v\n", err)
+		fmt.Printf("Err: %v\n", err)
 	}
 
 	fmt.Println(string(bytes))
