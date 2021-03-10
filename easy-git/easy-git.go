@@ -35,16 +35,16 @@ func (c *Command) Init() {
 
 	//c.RunCommand(exec.Command("git", []string{"branch", "-M", "main"}...))
 
+	if input.AddOrigin {
+		c.RunCommand(exec.Command("/usr/bin/git", []string{"remote", "set-url", c.Repository}...))
+	}
+
 	if input.AddFiles {
 		c.RunCommand(exec.Command("/usr/bin/git", []string{"add", "."}...))
 	}
 
 	if input.CommitFiles {
 		c.RunCommand(exec.Command("/usr/bin/git", []string{"commit", "-m", "testabcdfg"}...))
-	}
-
-	if input.AddOrigin {
-		c.RunCommand(exec.Command("/usr/bin/git", []string{"remote", "add", "origin", c.Repository}...))
 	}
 
 	if input.PushFiles {
