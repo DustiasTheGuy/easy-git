@@ -5,12 +5,14 @@ import (
 	"os/exec"
 )
 
+// Command holds the path of the git executable, remote repo, and a pointer to a cmd
 type Command struct {
 	GitPath    string
 	Repository string
 	Cmd        *exec.Cmd
 }
 
+// Input determines which commands should be executed
 type Input struct {
 	Initalize   bool
 	AddFiles    bool
@@ -19,6 +21,7 @@ type Input struct {
 	PushFiles   bool
 }
 
+// Init starts the program
 func (c *Command) Init() {
 	var input Input
 
@@ -77,6 +80,7 @@ func (c *Command) Init() {
 	}
 }
 
+// StrToBool parses the user input and converts it to a boolean
 func StrToBool(str string) bool {
 	if str == "Y" || str == "y" {
 		return true
@@ -85,6 +89,7 @@ func StrToBool(str string) bool {
 	return false
 }
 
+// RunCommand starts a command and prints the result
 func (c *Command) RunCommand(cmd *exec.Cmd) error {
 	bytes, err := cmd.Output()
 
@@ -96,6 +101,7 @@ func (c *Command) RunCommand(cmd *exec.Cmd) error {
 	return nil
 }
 
+// ReadInput reads user input through stdin
 func ReadInput(message string, boolAnswer bool) string {
 	var input string
 
