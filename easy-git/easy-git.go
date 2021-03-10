@@ -66,10 +66,13 @@ func StrToBool(str string) bool {
 func (c *Command) RunCommand(cmd *exec.Cmd) error {
 	fmt.Println(cmd)
 
-	if err := cmd.Run(); err != nil {
+	bytes, err := cmd.Output()
+
+	if err != nil {
 		log.Fatal(err)
 	}
 
+	fmt.Println(string(bytes))
 	return nil
 }
 
